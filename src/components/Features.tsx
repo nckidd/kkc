@@ -54,11 +54,48 @@ const item = {
 };
 export const Features: React.FC = () => {
     return (
-        <section>
-            <div>
-                <motion.h2>
+        <section className="py-16 px-4">
+            <div className="container mx-auto max-w-6xl">
+                <motion.h2
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    className="text-3xl text-gray-600 font-bold mb-12 text-center"
+                >
                     Compassionate Cat Sitting You Can Trust
                 </motion.h2>
+                <motion.div
+                    variants={container}
+                    initial="hidden"
+                    whileInView="show"
+                    className="grid grid-cols-1 md:grid-cols-3 gap-8"
+                >
+                    {features.map((feature, index) => (
+                        <motion.div>
+                            <Card>
+                                <CardHeader>
+                                    <img
+                                        src={feature.image}
+                                        alt={feature.alt}
+                                        className="w-full h-48 object-cover rounder-t-lg"
+                                    />
+                                    <CardTitle
+                                        className="mt-4 text-xl font-bold text-gray-600"
+                                    >
+                                        {feature.title}
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <p
+                                        className="text-gray-600"
+                                    >
+                                        {feature.description}
+                                    </p>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+                    )
+                )}
+                </motion.div>
             </div>
         </section>
     );
